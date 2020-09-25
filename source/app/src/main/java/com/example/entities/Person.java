@@ -2,7 +2,7 @@ package com.example.entities;
 
 import java.util.Date;
 
-public class Person {
+public final class Person {
 
     private final String LastName;
     private final String FirstName;
