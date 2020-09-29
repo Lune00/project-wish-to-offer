@@ -7,7 +7,7 @@ import com.schuhmacher.room.room.repository.PersonRepository;
 import java.util.concurrent.Executor;
 
 //Implementation of the injection interface for Room persistence
-public class InjectionRoom implements IInjection<PersonRepository> {
+public class InjectionRoom implements IInjection {
 
     public PersonRepository providePersonRepository(Context context) {
         AppRoomDataBase db = AppRoomDataBase.getDataBaseInstance(context);
