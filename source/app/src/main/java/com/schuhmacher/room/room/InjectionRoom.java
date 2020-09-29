@@ -1,26 +1,24 @@
 package com.schuhmacher.room.room;
 
 import android.content.Context;
+import com.schuhmacher.injection.IInjection;
 import com.schuhmacher.injection.ViewModelFactory;
 import com.schuhmacher.room.room.repository.PersonRepository;
 import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
-public class Injection {
+//Implementation of the injection interface for Room persistence
+public class InjectionRoom implements IInjection<PersonRepository> {
 
-    public static PersonRepository providePersonRepository(Context context) {
+    public PersonRepository providePersonRepository(Context context) {
         AppRoomDataBase db = AppRoomDataBase.getDataBaseInstance(context);
         return new PersonRepository(db.personDAO());
     }
 
-    public static Executor provideExecutor() {
-        return Executors.newSingleThreadExecutor();
-    }
-
     public static ViewModelFactory provideViewModelFactory(Context context) {
-        PersonRepository personRepository = providePersonRepository(context);
-        Executor executor = provideExecutor();
+        PersonRepository personRepository = new InjectionRoom().providePersonRepository(context);
+        Executor executor = IInjection.provideExecutor();
         return new ViewModelFactory(personRepository, executor);
     }
+
 }
 
