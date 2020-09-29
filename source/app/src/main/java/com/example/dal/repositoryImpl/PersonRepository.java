@@ -1,31 +1,31 @@
 package com.example.dal.repositoryImpl;
 
-import com.example.dal.DAOFactory;
+import androidx.lifecycle.LiveData;
+import com.example.dal.AppRoomDataBase;
 import com.example.dal.dao.IPersonDAO;
+import com.example.dal.daoSQLiteImpl.PersonDAORoom;
 import com.example.dal.repository.IPersonRepository;
-import com.example.entities.Person;
+import com.example.entities.PersonEntity;
+
+
+import java.util.List;
 
 public class PersonRepository implements IPersonRepository {
 
-    private IPersonDAO dao = DAOFactory.getPersonDAO();
+    private IPersonDAO personDao;
+    private LiveData<List<PersonEntity>> persons;
+
+    PersonRepository(PersonDAORoom personDao){
+
+    }
 
     @Override
-    public Person get(int id) {
+    public PersonEntity get(int id) {
         return null;
     }
 
     @Override
-    public void remove(Person person) {
-        return;
-    }
-
-    @Override
-    public void update(Person person) {
-
-    }
-
-    @Override
-    public void add(Person person) {
+    public void add(PersonEntity person) {
 
     }
 }
