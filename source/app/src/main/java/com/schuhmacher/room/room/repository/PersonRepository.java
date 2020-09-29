@@ -13,7 +13,7 @@ public class PersonRepository implements IPersonRepository {
     private IPersonDAO personDao;
     private LiveData<List<PersonEntity>> persons;
 
-    PersonRepository(PersonDAORoom personDAORoom){
+    public PersonRepository(PersonDAORoom personDAORoom){
         personDao = personDAORoom;
     }
 
