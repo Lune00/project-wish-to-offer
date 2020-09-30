@@ -4,4 +4,5 @@
     <string name="place_holder_lastName">Nom</string>
     <string name="action_add_person">Ajouter une personne</string>
     <string name="action_settings">Paramètres</string>
+    <string name="action_save_person">Enregistrer</string>
 </resources>
