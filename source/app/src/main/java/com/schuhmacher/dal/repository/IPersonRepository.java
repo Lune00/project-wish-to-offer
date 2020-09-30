@@ -1,10 +1,10 @@
 package com.schuhmacher.dal.repository;
 
 
-import com.schuhmacher.room.room.entities.PersonEntity;
+import com.schuhmacher.models.Person;
 
 public interface IPersonRepository {
 
-    void insert(PersonEntity person);
+    void insert(Person person);
 
 }

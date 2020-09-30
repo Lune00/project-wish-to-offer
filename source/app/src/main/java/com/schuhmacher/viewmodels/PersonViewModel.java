@@ -3,10 +3,7 @@ package com.schuhmacher.viewmodels;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
-
 import com.schuhmacher.dal.repository.IPersonRepository;
-import com.schuhmacher.room.room.entities.PersonEntity;
-import com.schuhmacher.room.room.mappers.MapperPersonModelEntity;
 import com.schuhmacher.models.Person;
 
 import java.util.concurrent.Executor;
@@ -27,9 +24,8 @@ public class PersonViewModel extends ViewModel {
     }
 
     public void insert(Person person){
-        final PersonEntity personEntity = MapperPersonModelEntity.PersonModelToEntity(person);
        executor.execute(() -> {
-           personRepository.insert(personEntity);
+           personRepository.insert(person);
        });
     }
 }
