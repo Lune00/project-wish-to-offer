@@ -2,4 +2,6 @@
     <string name="app_name">Gifts</string>
     <string name="place_holder_firstname">Prénom</string>
     <string name="place_holder_lastName">Nom</string>
+    <string name="action_add_person">Ajouter une personne</string>
+    <string name="action_settings">Paramètres</string>
 </resources>

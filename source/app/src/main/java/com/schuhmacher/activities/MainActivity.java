@@ -2,6 +2,8 @@ package com.schuhmacher.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -38,22 +41,48 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-        //Fab AddPerson
+        //FAB addPerson
+        //TODO: do properly Fab AddPerson
         FloatingActionButton fabAddPerson = findViewById(R.id.floatingActionButtonAddPerson);
         fabAddPerson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addPerson();
+                startAddPersonActivity();
             }
         });
 
 //        PersonViewModel personViewModel = this.injection.provideViewModelFactory(getApplicationContext()).create(PersonViewModel.class);
-
-
     }
 
-    public void addPerson() {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_addPerson:
+                startAddPersonActivity();
+                return true;
+            case R.id.action_settings:
+                startSettingsActivity();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+    public void startAddPersonActivity() {
         Intent intent = new Intent(this, AddPersonActivity.class);
+        startActivity(intent);
+    }
+
+    public void startSettingsActivity(){
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 }
