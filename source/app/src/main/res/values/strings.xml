@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Gifts</string>
+    <string name="place_holder_firstname">Prénom</string>
+    <string name="place_holder_lastName">Nom</string>
 </resources>
