@@ -32,7 +32,10 @@ public class ListPersonsAdapter extends RecyclerView.Adapter<ListPersonsAdapter.
     }
 
 
-    public ListPersonsAdapter(List<Person> persons) {
+    public ListPersonsAdapter() {
+    }
+
+    public void updateData(List<Person> persons) {
         this.persons = persons;
     }
 
@@ -52,6 +55,7 @@ public class ListPersonsAdapter extends RecyclerView.Adapter<ListPersonsAdapter.
 
     @Override
     public int getItemCount() {
+        if (this.persons == null) return 0;
         return persons.size();
     }
 }

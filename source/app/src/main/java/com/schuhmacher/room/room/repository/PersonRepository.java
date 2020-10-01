@@ -2,7 +2,7 @@ package com.schuhmacher.room.room.repository;
 
 import androidx.lifecycle.LiveData;
 
-import com.schuhmacher.dal.dao.IPersonDAO;
+import com.schuhmacher.room.room.dao.IPersonDAO;
 import com.schuhmacher.dal.repository.IPersonRepository;
 import com.schuhmacher.models.Person;
 import com.schuhmacher.room.room.dao.PersonDAORoom;
@@ -25,5 +25,10 @@ public class PersonRepository implements IPersonRepository {
     public void insert(Person person) {
         final PersonEntity personEntity = MapperPersonModelEntity.PersonModelToEntity(person);
         personDao.insert(personEntity);
+    }
+
+    @Override
+    public List<Person> getAll() {
+        return null;
     }
 }

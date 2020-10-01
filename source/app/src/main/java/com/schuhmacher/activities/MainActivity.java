@@ -9,6 +9,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,9 +28,10 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private IInjection injection = InjectionFactory.getInjector(Configuration.getModePersistance());
+    private final IInjection injection = InjectionFactory.getInjector(Configuration.getModePersistance());
     private Toolbar toolbar;
     private FloatingActionButton fabAddPerson;
+    private ListPersonsAdapter adapter;
 
     private final int toolBarId = R.id.toolbar;
     private final int recyclerViewId = R.id.personsRecyclerView;
@@ -46,16 +48,26 @@ public class MainActivity extends AppCompatActivity {
 
         //Test data
         //PersonViewModel personViewModel = this.injection.provideViewModelFactory(getApplicationContext()).create(PersonViewModel.class);
-        List<Person> persons = new ArrayList<>();
-        //Fetch test data:
-        for(int i = 0 ; i != 50; i++){
-            persons.add(new Person("Schuhmacher", "Paul", "Polo", new Date(1990, 6, 21)));
-            persons.add(new Person("Rochas", "Fanny", "Fanette", new Date(1989, 8, 15)));
-        }
+//        List<Person> persons = new ArrayList<>();
+//        //Fetch test data:
+//        for(int i = 0 ; i != 50; i++){
+//            persons.add(new Person("Schuhmacher", "Paul", "Polo", new Date(1990, 6, 21)));
+//            persons.add(new Person("Rochas", "Fanny", "Fanette", new Date(1989, 8, 15)));
+//        }
+
+        PersonViewModel personViewModel = this.injection.provideViewModelFactory(getApplicationContext()).create(PersonViewModel.class);
 
         loadTooBar(toolBarId);
-        loadRecyclerView(recyclerViewId, new LinearLayoutManager(this), new ListPersonsAdapter(persons));
+        loadRecyclerView(recyclerViewId, new LinearLayoutManager(this), new ListPersonsAdapter());
         loadFloatingActionButton(floatingActionButtonId);
+
+        //UI Observers added on data (adapter track changes and updates its own cache)
+        personViewModel.getAllPersons().observe(this, new Observer<List<Person>>() {
+            @Override
+            public void onChanged(List<Person> persons) {
+                adapter.updateData(persons);
+            }
+        });
     }
 
     private void loadTooBar(final int toolBarId){
@@ -73,10 +85,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void loadRecyclerView(final int recyclerViewId, RecyclerView.LayoutManager layoutManager, RecyclerView.Adapter adapter){
+    private void loadRecyclerView(final int recyclerViewId, RecyclerView.LayoutManager layoutManager, ListPersonsAdapter adapter){
         recyclerView = (RecyclerView) findViewById(recyclerViewId);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
+        this.adapter = adapter;
         recyclerView.setAdapter(adapter);
     }
 
