@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+android.defaultConfig.vectorDrawables.useSupportLibrary = true
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -53,5 +55,8 @@ dependencies {
 
     //ADD RECYLCLER VIEW DEP
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    //Coordinator layout
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
 
 }

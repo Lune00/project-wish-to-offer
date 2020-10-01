@@ -35,11 +35,11 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Recycler view
-        recyclerView = (RecyclerView) findViewById(R.id.personsRecyclerView);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+//        recyclerView = (RecyclerView) findViewById(R.id.personsRecyclerView);
+//        recyclerView.setHasFixedSize(true);
+//        layoutManager = new LinearLayoutManager(this);
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setAdapter(adapter);
 
         //FAB addPerson
         //TODO: do properly Fab AddPerson
