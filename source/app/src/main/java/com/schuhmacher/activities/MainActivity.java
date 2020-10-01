@@ -27,11 +27,15 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
     private IInjection injection = InjectionFactory.getInjector(Configuration.getModePersistance());
     private Toolbar toolbar;
     private FloatingActionButton fabAddPerson;
+
+    private final int toolBarId = R.id.toolbar;
+    private final int recyclerViewId = R.id.personsRecyclerView;
+    private final int floatingActionButtonId = R.id.floatingActionButtonAddPerson;
+    private final int menuItemActionAddPersonId = R.id.action_addPerson;
+    private final int menuItemActionSettingsId = R.id.action_settings;
 
 
     @Override
@@ -39,20 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //Toolbar
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-
-        //FAB addPerson
-        fabAddPerson = findViewById(R.id.floatingActionButtonAddPerson);
-        fabAddPerson.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startAddPersonActivity();
-            }
-        });
 
         //Test data
         //PersonViewModel personViewModel = this.injection.provideViewModelFactory(getApplicationContext()).create(PersonViewModel.class);
@@ -63,21 +53,31 @@ public class MainActivity extends AppCompatActivity {
             persons.add(new Person("Rochas", "Fanny", "Fanette", new Date(1989, 8, 15)));
         }
 
-
-        //Recycler view
-        recyclerView = (RecyclerView) findViewById(R.id.personsRecyclerView);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new ListPersonsAdapter(persons);
-        recyclerView.setAdapter(adapter);
-
+        loadTooBar(toolBarId);
+        loadRecyclerView(recyclerViewId, new LinearLayoutManager(this), new ListPersonsAdapter(persons));
+        loadFloatingActionButton(floatingActionButtonId);
     }
 
-    @Override
-    public void onResume() {
-        Log.i("test", "on resume");
-        super.onResume();
+    private void loadTooBar(final int toolBarId){
+        toolbar = (Toolbar) findViewById(toolBarId);
+        setSupportActionBar(toolbar);
+    }
+
+    private void loadFloatingActionButton(final int floatingActionButtonId){
+        fabAddPerson = findViewById(floatingActionButtonId);
+        fabAddPerson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startAddPersonActivity();
+            }
+        });
+    }
+
+    private void loadRecyclerView(final int recyclerViewId, RecyclerView.LayoutManager layoutManager, RecyclerView.Adapter adapter){
+        recyclerView = (RecyclerView) findViewById(recyclerViewId);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -90,10 +90,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.action_addPerson:
+            case menuItemActionAddPersonId:
                 startAddPersonActivity();
                 return true;
-            case R.id.action_settings:
+            case menuItemActionSettingsId:
                 startSettingsActivity();
                 return true;
             default:
