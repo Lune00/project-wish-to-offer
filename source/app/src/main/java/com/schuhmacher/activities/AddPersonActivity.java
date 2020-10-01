@@ -6,11 +6,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class AddPersonActivity extends AppCompatActivity {
 
@@ -27,8 +26,8 @@ public class AddPersonActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         //Focus on create activity
-        TextInputLayout textInputLayout = (TextInputLayout) findViewById(R.id.TextInputLayoutPersonFirstName);
-        textInputLayout.requestFocus();
+        TextInputEditText TextInputEditText = (TextInputEditText) findViewById(R.id.TextInputLayoutPersonFirstName);
+        TextInputEditText.requestFocus();
     }
 
     @Override

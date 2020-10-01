@@ -1,35 +1,57 @@
 package com.schuhmacher.activities.adapters;
 
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.schuhmacher.activities.R;
+import com.schuhmacher.models.Person;
+
+import java.util.List;
 
 
 /**
  * Adapter for the Persons List
  */
-public class ListPersonsAdapter extends RecyclerView.Adapter {
+public class ListPersonsAdapter extends RecyclerView.Adapter<ListPersonsAdapter.PersonViewHolder> {
 
-    //TODO : tmp, should be replaced by PersonModels when it will be ok
-    private String[] persons;
+    private List<Person> persons;
 
-    public ListPersonsAdapter(String[] persons) {
+    public static class PersonViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView textView;
+
+        public PersonViewHolder(@NonNull View itemView) {
+            super(itemView);
+            this.textView = itemView.findViewById(R.id.textViewFirstName);
+        }
+    }
+
+
+    public ListPersonsAdapter(List<Person> persons) {
         this.persons = persons;
     }
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    //Create new views (invoked by the layout manager)
+    public ListPersonsAdapter.PersonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        //Create a new view and initialise it from the layout defined
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.person_view, parent, false);
+        return new PersonViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull PersonViewHolder personViewHolder, int position) {
+        personViewHolder.textView.setText(persons.get(position).getFirstName());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return persons.size();
     }
 }

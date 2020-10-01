@@ -1,11 +1,16 @@
 package com.schuhmacher.viewmodels;
 
+import android.util.Log;
+
 import androidx.annotation.Nullable;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
+
 import com.schuhmacher.dal.repository.IPersonRepository;
 import com.schuhmacher.models.Person;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.concurrent.Executor;
 
 public class PersonViewModel extends ViewModel {
@@ -16,7 +21,7 @@ public class PersonViewModel extends ViewModel {
 
     //DATA
     @Nullable
-    private LiveData<Person> persons;
+    private List<Person> persons = new ArrayList<>();
 
     public PersonViewModel(IPersonRepository personRepository, Executor executor){
         this.personRepository = personRepository;
@@ -27,5 +32,9 @@ public class PersonViewModel extends ViewModel {
        executor.execute(() -> {
            personRepository.insert(person);
        });
+    }
+
+    public List<Person> getLocalData(){
+        return this.persons;
     }
 }

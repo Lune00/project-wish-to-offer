@@ -12,11 +12,11 @@
 
         <activity android:name=".SettingsActivity"></activity>
 
-        <activity android:name=".AddPersonActivity" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".AddPersonActivity" android:parentActivityName=".MainActivity"  android:screenOrientation="portrait"/>
 
         <activity android:name=".ListPersons" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

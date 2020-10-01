@@ -31,4 +31,14 @@ public final class Person {
     public String getPseudo() {
         return this.pseudo;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", pseudo='" + pseudo + '\'' +
+                ", birthday=" + birthday +
+                '}';
+    }
 }
