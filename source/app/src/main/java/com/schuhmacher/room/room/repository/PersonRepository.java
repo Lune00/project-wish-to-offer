@@ -15,7 +15,6 @@ public class PersonRepository implements IPersonRepository {
 
     private PersonDao personDao;
 
-
     public PersonRepository(PersonDao personDao){
         personDao = personDao;
     }
@@ -28,6 +27,8 @@ public class PersonRepository implements IPersonRepository {
 
     //TODO : UNIT TEST (should be updated when db changes)
     //TODO : Comment faire remonter LiveData<Person> observer par l'ui sans qu'il y ait de ref vers l'entité dans l'activité?
+    //Faire un observer ici sur liveData<Entity> qui met a jour un liveData<Person> qui sera lui meme observé depuis l'activité?
+    //See Transformation of LiveData and link : https://proandroiddev.com/clean-easy-new-how-to-architect-your-app-part-4-livedata-transformations-f0fd9f313ec6
     @Override
     public List<Person> getAll() {
         List<Person> persons = new ArrayList<>();
