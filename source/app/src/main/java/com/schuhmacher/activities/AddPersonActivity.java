@@ -10,17 +10,25 @@ import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 public class AddPersonActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_person);
+
+        //Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.action_add_person));
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        //Focus on create activity
+        TextInputLayout textInputLayout = (TextInputLayout) findViewById(R.id.TextInputLayoutPersonFirstName);
+        textInputLayout.requestFocus();
     }
 
     @Override

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="auto"
     tools:context="com.schuhmacher.activities.AddPersonActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -18,41 +19,38 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <EditText
-        android:id="@+id/editTextPersonLastName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/place_holder_lastName"
-        android:inputType="textPersonName"
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="379dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPersonFirstName" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-    <EditText
-        android:id="@+id/editTextPersonFirstName"
-        android:layout_width="0dp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/TextInputLayoutPersonFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/place_holder_firstname" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="379dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/place_holder_firstname"
-        android:inputType="textPersonName"
+        android:layout_marginBottom="537dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/TextInputLayoutPersonLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/place_holder_lastName" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
