@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.schuhmacher.room.room.dao.PersonDAORoom;
+import com.schuhmacher.room.room.dao.PersonDao;
 import com.schuhmacher.room.room.entities.PersonEntity;
 
 import java.util.concurrent.ExecutorService;
@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 
 public abstract class AppRoomDataBase extends RoomDatabase {
 
-    public abstract PersonDAORoom personDAO();
+    public abstract PersonDao personDAO();
 
     private static volatile AppRoomDataBase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
