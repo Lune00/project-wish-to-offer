@@ -30,6 +30,7 @@ public class PersonViewModel extends ViewModel {
         });
     }
 
+    //TODO: to be changed (should call getAll of Repo (LiveData map to PersonModel))
     public LiveData<List<Person>> getAllPersons() {
         if (this.persons == null)
             this.persons = new MutableLiveData<List<Person>>();
