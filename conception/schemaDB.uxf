@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>11</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>275</x>
+      <y>297</y>
+      <w>220</w>
+      <h>209</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Person&gt;&gt;
+--
+_-id (PK)_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>924</x>
+      <y>297</y>
+      <w>231</w>
+      <h>209</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Gift&gt;&gt;
+--
+_-id (PK)_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>649</x>
+      <y>363</y>
+      <w>132</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>
+Linked
+--
+-status
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>484</x>
+      <y>385</y>
+      <w>187</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>
+m2=0..n</panel_attributes>
+    <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>770</x>
+      <y>385</y>
+      <w>176</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>
+m1=0..n</panel_attributes>
+    <additional_attributes>140.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>638</x>
+      <y>583</y>
+      <w>231</w>
+      <h>209</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Group&gt;&gt;
+--
+_-id (PK)_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>319</x>
+      <y>649</y>
+      <w>132</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>
+Belongs to
+--
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>990</x>
+      <y>649</y>
+      <w>132</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>Belongs to
+--
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>374</x>
+      <y>495</y>
+      <w>66</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>
+m2=0..n</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>440</x>
+      <y>671</y>
+      <w>220</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>
+m1=0..n</panel_attributes>
+    <additional_attributes>180.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1034</x>
+      <y>495</y>
+      <w>66</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>
+m2=0..n</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>858</x>
+      <y>660</y>
+      <w>154</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>
+m1=0..n</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
+  </element>
+</diagram>

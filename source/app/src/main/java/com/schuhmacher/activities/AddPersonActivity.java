@@ -76,11 +76,10 @@ public class AddPersonActivity extends AppCompatActivity {
 
         Log.i("button", "Save person - " + firstName + " " + lastName);
 
-        startActivityListPersons();
+        resumeActivityListPersons();
     }
 
-    private void startActivityListPersons(){
-        Intent intent = new Intent(AddPersonActivity.this, MainActivity.class);
-        startActivity(intent);
+    private void resumeActivityListPersons(){
+        finish();
     }
 }
