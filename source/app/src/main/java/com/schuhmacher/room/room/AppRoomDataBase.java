@@ -24,21 +24,21 @@ public abstract class AppRoomDataBase extends RoomDatabase {
 
     private static volatile AppRoomDataBase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
-    static final ExecutorService dataBaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    public static final ExecutorService dataBaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public static AppRoomDataBase getDataBaseInstance(final Context context) {
 
         if (INSTANCE == null) {
             synchronized (AppRoomDataBase.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppRoomDataBase.class, "giftsDB").addCallback(sRoomDataBaseCallBack).build();
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppRoomDataBase.class, "giftsDB").addCallback(populateDB).build();
                 }
             }
         }
         return INSTANCE;
     }
 
-    private static RoomDatabase.Callback sRoomDataBaseCallBack = new RoomDatabase.Callback() {
+    private static RoomDatabase.Callback populateDB = new RoomDatabase.Callback() {
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);

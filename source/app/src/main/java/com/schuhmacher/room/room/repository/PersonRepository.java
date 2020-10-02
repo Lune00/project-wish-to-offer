@@ -5,6 +5,7 @@ import androidx.lifecycle.Transformations;
 
 import com.schuhmacher.dal.repository.IPersonRepository;
 import com.schuhmacher.models.Person;
+import com.schuhmacher.room.room.AppRoomDataBase;
 import com.schuhmacher.room.room.dao.PersonDao;
 import com.schuhmacher.room.room.entities.PersonEntity;
 import com.schuhmacher.room.room.mappers.MapperPersonModelEntity;
@@ -23,7 +24,9 @@ public class PersonRepository implements IPersonRepository {
     @Override
     public void insert(Person person) {
         final PersonEntity personEntity = MapperPersonModelEntity.PersonModelToEntity(person);
-        personDao.insert(personEntity);
+        AppRoomDataBase.dataBaseWriteExecutor.execute(() -> {
+            personDao.insert(personEntity);
+        });
     }
 
     //TODO : UNIT TEST (should be updated when db  changes), for User Case (BL)
@@ -46,10 +49,11 @@ public class PersonRepository implements IPersonRepository {
 
     /**
      * Helper function :
+     *
      * @param entities
      * @return
      */
-    List<Person> createPersonModel(List<PersonEntity> entities){
+    List<Person> createPersonModel(List<PersonEntity> entities) {
         List<Person> persons = new ArrayList<>();
         for (PersonEntity entity : entities) {
             persons.add(MapperPersonModelEntity.PersonEntityToModel(entity));

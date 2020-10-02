@@ -52,15 +52,10 @@ public class MainActivity extends AppCompatActivity {
         loadFloatingActionButton(floatingActionButtonId);
 
         //UI Observers added on data (adapter track changes and updates its own cache)
-        personViewModel.getAllPersons().observe(this, new Observer<List<Person>>() {
-            @Override
-            public void onChanged(List<Person> persons) {
-                Log.e("flow","data has changed : " + persons.toString());
-                adapter.updateData(persons);
-            }
+        personViewModel.getAllPersons().observe(this, persons -> {
+            Log.e("flow","data has changed : " + persons.toString());
+            adapter.updateData(persons);
         });
-
-//        personViewModel.insert(new Person("Schuhmacher", "Paul", "Polo", new Date(1990, 6, 21)));
     }
 
     @Override

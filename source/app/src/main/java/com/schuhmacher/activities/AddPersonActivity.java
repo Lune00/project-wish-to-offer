@@ -74,7 +74,7 @@ public class AddPersonActivity extends AppCompatActivity {
         PersonViewModel personViewModel = this.injection.provideViewModelFactory(getApplicationContext()).create(PersonViewModel.class);
         personViewModel.insert(person);
 
-        Log.i("button", "Save person - " + firstName + " " + lastName);
+        //TODO : Form Validation
 
         resumeActivityListPersons();
     }

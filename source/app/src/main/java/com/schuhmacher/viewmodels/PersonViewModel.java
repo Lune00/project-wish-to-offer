@@ -15,21 +15,14 @@ public class PersonViewModel extends ViewModel {
 
     //Repositories
     private final IPersonRepository personRepository;
-    private final Executor executor;
 
-//    //DATA
-//    private LiveData<List<Person>> persons;
-
-    public PersonViewModel(IPersonRepository personRepository, Executor executor) {
+    public PersonViewModel(IPersonRepository personRepository) {
         this.personRepository = personRepository;
-        this.executor = executor;
     }
 
     public void insert(Person person) {
-        executor.execute(() -> {
             personRepository.insert(person);
             Log.i("flow","insert person");
-        });
     }
 
     public LiveData<List<Person>> getAllPersons() {
