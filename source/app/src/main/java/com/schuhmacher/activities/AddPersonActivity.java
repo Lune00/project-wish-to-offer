@@ -1,5 +1,6 @@
 package com.schuhmacher.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -10,8 +11,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.schuhmacher.Configuration;
+import com.schuhmacher.injection.IInjection;
+import com.schuhmacher.injection.InjectionFactory;
+import com.schuhmacher.models.Person;
+import com.schuhmacher.room.room.entities.PersonEntity;
+import com.schuhmacher.viewmodels.PersonViewModel;
+
+import java.util.Date;
 
 public class AddPersonActivity extends AppCompatActivity {
+
+    private final IInjection injection = InjectionFactory.getInjector(Configuration.getModePersistance());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +39,9 @@ public class AddPersonActivity extends AppCompatActivity {
         //Focus on create activity
         TextInputEditText TextInputEditText = (TextInputEditText) findViewById(R.id.TextInputLayoutPersonFirstName);
         TextInputEditText.requestFocus();
+
+
+
     }
 
     @Override
@@ -41,14 +55,32 @@ public class AddPersonActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_save_person:
-                savePerson();
+                onSavePerson();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    public void savePerson() {
-        Log.i("button", "Save person !");
+    public void onSavePerson() {
+
+        final TextInputEditText textInputEditTextFirstName = (TextInputEditText) findViewById(R.id.TextInputLayoutPersonFirstName);
+        final TextInputEditText textInputEditTextLastName = (TextInputEditText) findViewById(R.id.TextInputLayoutPersonLastName);
+        final String firstName = textInputEditTextFirstName.getText().toString();
+        final String lastName = textInputEditTextLastName.getText().toString();
+        Person person = new Person(firstName, lastName, "FOO", new Date(0));
+
+        //ModelView
+        PersonViewModel personViewModel = this.injection.provideViewModelFactory(getApplicationContext()).create(PersonViewModel.class);
+        personViewModel.insert(person);
+
+        Log.i("button", "Save person - " + firstName + " " + lastName);
+
+        startActivityListPersons();
+    }
+
+    private void startActivityListPersons(){
+        Intent intent = new Intent(AddPersonActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }

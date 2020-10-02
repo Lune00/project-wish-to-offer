@@ -10,11 +10,11 @@ public final class Person {
     private final Date birthday;
 
 
-    public Person(String LastName, String FirstName, String Pseudo, Date Birthday) {
-        this.lastName = LastName;
-        this.firstName = FirstName;
-        this.pseudo = Pseudo;
-        this.birthday = new Date(Birthday.getTime());
+    public Person(String firstName, String lastName, String pseudo, Date birthday) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.pseudo = pseudo;
+        this.birthday = new Date(birthday.getTime());
     }
 
     public Date getBirthday() {

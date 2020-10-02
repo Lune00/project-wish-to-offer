@@ -40,6 +40,7 @@ public class ListPersonsAdapter extends RecyclerView.Adapter<ListPersonsAdapter.
         Log.e("flow", "adapter update : before" + this.persons + "after : " + persons.toString());
         this.persons.clear();
         this.persons.addAll(persons);
+        notifyDataSetChanged();
     }
 
     @NonNull

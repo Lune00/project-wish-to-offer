@@ -17,8 +17,8 @@ public class PersonViewModel extends ViewModel {
     private final IPersonRepository personRepository;
     private final Executor executor;
 
-    //DATA
-    private LiveData<List<Person>> persons;
+//    //DATA
+//    private LiveData<List<Person>> persons;
 
     public PersonViewModel(IPersonRepository personRepository, Executor executor) {
         this.personRepository = personRepository;

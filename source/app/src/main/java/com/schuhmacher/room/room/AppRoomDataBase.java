@@ -48,6 +48,7 @@ public abstract class AppRoomDataBase extends RoomDatabase {
                 PersonDao personDao = INSTANCE.personDAO();
                 personDao.deleteAll();
                 personDao.insert(new PersonEntity("Paul","Schuhmacher"));
+                personDao.insert(new PersonEntity("Fanny","Rochas"));
                 Log.i("flow", "mock data inserted");
             });
         }

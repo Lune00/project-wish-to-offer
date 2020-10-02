@@ -15,11 +15,9 @@ import java.util.List;
 public class PersonRepository implements IPersonRepository {
 
     private PersonDao personDao;
-    private LiveData<List<PersonEntity>> personEntityLiveData;
 
     public PersonRepository(PersonDao personDao) {
         this.personDao = personDao;
-        this.personEntityLiveData = personDao.getAll();
     }
 
     @Override
@@ -42,7 +40,7 @@ public class PersonRepository implements IPersonRepository {
     //See Transformation of LiveData and link : https://proandroiddev.com/clean-easy-new-how-to-architect-your-app-part-4-livedata-transformations-f0fd9f313ec6
     //TODO Return LiveData map to Person(model) for Presenter/UI only
     public LiveData<List<Person>> getAllLiveData() {
-        LiveData<List<Person>> personModelsLD = Transformations.map(personEntityLiveData, newData -> createPersonModel(newData));
+        LiveData<List<Person>> personModelsLD = Transformations.map(personDao.getAll(), newData -> createPersonModel(newData));
         return personModelsLD;
     }
 
