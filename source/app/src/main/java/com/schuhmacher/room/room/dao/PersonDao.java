@@ -13,5 +13,7 @@ public abstract class PersonDao implements IBaseDao<PersonEntity> {
 
     @Query("SELECT * FROM person_table")
     public abstract LiveData<List<PersonEntity>> getAll();
+    @Query("DELETE FROM person_table")
+    public abstract void deleteAll();
 
 }

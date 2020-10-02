@@ -21,8 +21,6 @@ import com.schuhmacher.injection.InjectionFactory;
 import com.schuhmacher.models.Person;
 import com.schuhmacher.viewmodels.PersonViewModel;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,15 +44,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Test data
-        //PersonViewModel personViewModel = this.injection.provideViewModelFactory(getApplicationContext()).create(PersonViewModel.class);
-//        List<Person> persons = new ArrayList<>();
-//        //Fetch test data:
-//        for(int i = 0 ; i != 50; i++){
-//            persons.add(new Person("Schuhmacher", "Paul", "Polo", new Date(1990, 6, 21)));
-//            persons.add(new Person("Rochas", "Fanny", "Fanette", new Date(1989, 8, 15)));
-//        }
-
         PersonViewModel personViewModel = this.injection.provideViewModelFactory(getApplicationContext()).create(PersonViewModel.class);
 
         loadTooBar(toolBarId);
@@ -65,17 +54,26 @@ public class MainActivity extends AppCompatActivity {
         personViewModel.getAllPersons().observe(this, new Observer<List<Person>>() {
             @Override
             public void onChanged(List<Person> persons) {
+                Log.e("flow","data has changed : " + persons.toString());
                 adapter.updateData(persons);
             }
         });
+
+//        personViewModel.insert(new Person("Schuhmacher", "Paul", "Polo", new Date(1990, 6, 21)));
     }
 
-    private void loadTooBar(final int toolBarId){
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("flow","onResume");
+    }
+
+    private void loadTooBar(final int toolBarId) {
         toolbar = (Toolbar) findViewById(toolBarId);
         setSupportActionBar(toolbar);
     }
 
-    private void loadFloatingActionButton(final int floatingActionButtonId){
+    private void loadFloatingActionButton(final int floatingActionButtonId) {
         fabAddPerson = findViewById(floatingActionButtonId);
         fabAddPerson.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void loadRecyclerView(final int recyclerViewId, RecyclerView.LayoutManager layoutManager, ListPersonsAdapter adapter){
+    private void loadRecyclerView(final int recyclerViewId, RecyclerView.LayoutManager layoutManager, ListPersonsAdapter adapter) {
         recyclerView = (RecyclerView) findViewById(recyclerViewId);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);

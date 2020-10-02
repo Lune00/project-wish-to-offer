@@ -1,5 +1,6 @@
 package com.schuhmacher.activities.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.schuhmacher.activities.R;
 import com.schuhmacher.models.Person;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -19,7 +21,7 @@ import java.util.List;
  */
 public class ListPersonsAdapter extends RecyclerView.Adapter<ListPersonsAdapter.PersonViewHolder> {
 
-    private List<Person> persons;
+    private List<Person> persons = new ArrayList<>();
 
     public static class PersonViewHolder extends RecyclerView.ViewHolder {
 
@@ -31,12 +33,13 @@ public class ListPersonsAdapter extends RecyclerView.Adapter<ListPersonsAdapter.
         }
     }
 
-
     public ListPersonsAdapter() {
     }
 
     public void updateData(List<Person> persons) {
-        this.persons = persons;
+        Log.e("flow", "adapter update : before" + this.persons + "after : " + persons.toString());
+        this.persons.clear();
+        this.persons.addAll(persons);
     }
 
     @NonNull

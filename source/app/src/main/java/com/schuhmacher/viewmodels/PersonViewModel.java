@@ -1,7 +1,8 @@
 package com.schuhmacher.viewmodels;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.schuhmacher.dal.repository.IPersonRepository;
@@ -27,13 +28,11 @@ public class PersonViewModel extends ViewModel {
     public void insert(Person person) {
         executor.execute(() -> {
             personRepository.insert(person);
+            Log.i("flow","insert person");
         });
     }
 
-    //TODO: to be changed (should call getAll of Repo (LiveData map to PersonModel))
     public LiveData<List<Person>> getAllPersons() {
-        if (this.persons == null)
-            this.persons = new MutableLiveData<List<Person>>();
-        return this.persons;
+        return this.personRepository.getAllLiveData();
     }
 }
