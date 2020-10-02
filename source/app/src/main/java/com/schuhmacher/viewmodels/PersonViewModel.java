@@ -18,6 +18,7 @@ public class PersonViewModel extends ViewModel {
 
     public PersonViewModel(IPersonRepository personRepository) {
         this.personRepository = personRepository;
+        Log.i("flow","constructor ViewModel");
     }
 
     public void insert(Person person) {
