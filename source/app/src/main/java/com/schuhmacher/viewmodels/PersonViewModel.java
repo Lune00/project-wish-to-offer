@@ -9,7 +9,6 @@ import com.schuhmacher.dal.repository.IPersonRepository;
 import com.schuhmacher.models.Person;
 
 import java.util.List;
-import java.util.concurrent.Executor;
 
 public class PersonViewModel extends ViewModel {
 

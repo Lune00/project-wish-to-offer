@@ -10,6 +10,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
         Log.e("flow","onCreate");
 
-        PersonViewModel personViewModel = this.injection.provideViewModelFactory(getApplicationContext()).create(PersonViewModel.class);
+        ViewModelProvider.Factory factory = this.injection.provideViewModelFactory(getApplicationContext());
+        PersonViewModel personViewModel = new ViewModelProvider(this, factory).get(PersonViewModel.class);
 
         loadTooBar(toolBarId);
         loadRecyclerView(recyclerViewId, new LinearLayoutManager(this), new ListPersonsAdapter());

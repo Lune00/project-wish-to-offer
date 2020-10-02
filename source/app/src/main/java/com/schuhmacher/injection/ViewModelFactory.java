@@ -1,5 +1,7 @@
 package com.schuhmacher.injection;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,6 +22,7 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
 
+        Log.e("flow","create of ViewModelProvide.Factory called");
         if(modelClass.isAssignableFrom(PersonViewModel.class)){
             return (T) new PersonViewModel(personRepository);
         }
