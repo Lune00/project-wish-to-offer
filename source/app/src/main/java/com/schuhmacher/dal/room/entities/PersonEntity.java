@@ -1,4 +1,4 @@
-package com.schuhmacher.room.room.entities;
+package com.schuhmacher.dal.room.entities;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

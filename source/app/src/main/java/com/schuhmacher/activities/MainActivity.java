@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -14,16 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.schuhmacher.Configuration;
 import com.schuhmacher.activities.adapters.ListPersonsAdapter;
-import com.schuhmacher.injection.IViewModelFactoryFactory;
-import com.schuhmacher.injection.InjectionFactory;
-import com.schuhmacher.viewmodels.PersonViewModel;
+import com.schuhmacher.injection.Injection;
+import com.schuhmacher.viewmodels.ListPersonsViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private final IViewModelFactoryFactory injection = InjectionFactory.getInjector(Configuration.getModePersistance());
     private Toolbar toolbar;
     private FloatingActionButton fabAddPerson;
     private ListPersonsAdapter adapter;
@@ -42,15 +38,15 @@ public class MainActivity extends AppCompatActivity {
 
         Log.e("flow","onCreate");
 
-        ViewModelProvider.Factory factory = this.injection.provideViewModelFactory(getApplicationContext());
-        PersonViewModel personViewModel = new ViewModelProvider(this, factory).get(PersonViewModel.class);
+        ViewModelProvider.Factory factory = Injection.provideViewModelFactory(this);
+        ListPersonsViewModel vm = new ViewModelProvider(this, factory).get(ListPersonsViewModel.class);
 
-        loadTooBar(toolBarId);
+        loadToolBar(toolBarId);
         loadRecyclerView(recyclerViewId, new LinearLayoutManager(this), new ListPersonsAdapter());
         loadFloatingActionButton(floatingActionButtonId);
 
         //UI Observers added on data (adapter track changes and updates its own cache)
-        personViewModel.getAllPersons().observe(this, persons -> {
+        vm.getAllPersons().observe(this, persons -> {
             Log.e("flow","data has changed : " + persons.toString());
             adapter.updateData(persons);
         });
@@ -62,19 +58,14 @@ public class MainActivity extends AppCompatActivity {
         Log.e("flow","onResume");
     }
 
-    private void loadTooBar(final int toolBarId) {
+    private void loadToolBar(final int toolBarId) {
         toolbar = (Toolbar) findViewById(toolBarId);
         setSupportActionBar(toolbar);
     }
 
     private void loadFloatingActionButton(final int floatingActionButtonId) {
         fabAddPerson = findViewById(floatingActionButtonId);
-        fabAddPerson.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startAddPersonActivity();
-            }
-        });
+        fabAddPerson.setOnClickListener(v -> startAddPersonActivity());
     }
 
     private void loadRecyclerView(final int recyclerViewId, RecyclerView.LayoutManager layoutManager, ListPersonsAdapter adapter) {

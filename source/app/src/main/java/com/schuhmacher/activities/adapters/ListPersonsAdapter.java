@@ -34,11 +34,9 @@ public class ListPersonsAdapter extends RecyclerView.Adapter<ListPersonsAdapter.
     }
 
     public ListPersonsAdapter() {
-        Log.e("flow", "adapter constructor");
     }
 
     public void updateData(List<Person> persons) {
-        Log.e("flow", "adapter update : before" + this.persons + "after : " + persons.toString());
         this.persons.clear();
         this.persons.addAll(persons);
         notifyDataSetChanged();

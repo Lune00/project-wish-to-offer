@@ -9,17 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.schuhmacher.Configuration;
-import com.schuhmacher.injection.IViewModelFactoryFactory;
-import com.schuhmacher.injection.InjectionFactory;
 import com.schuhmacher.models.Person;
-import com.schuhmacher.viewmodels.PersonViewModel;
 
 import java.util.Date;
 
 public class AddPersonActivity extends AppCompatActivity {
-
-    private final IViewModelFactoryFactory injection = InjectionFactory.getInjector(Configuration.getModePersistance());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +31,7 @@ public class AddPersonActivity extends AppCompatActivity {
         TextInputEditText TextInputEditText = (TextInputEditText) findViewById(R.id.TextInputLayoutPersonFirstName);
         TextInputEditText.requestFocus();
 
-
+        //TODO : instanciate ViewModel here and setup observers on its liveData(firstName, lastName)
 
     }
 
@@ -61,17 +55,14 @@ public class AddPersonActivity extends AppCompatActivity {
 
     public void onSavePerson() {
 
+        //TODO : data should be fetched from FormValidationViewModelPerson
         final TextInputEditText textInputEditTextFirstName = (TextInputEditText) findViewById(R.id.TextInputLayoutPersonFirstName);
         final TextInputEditText textInputEditTextLastName = (TextInputEditText) findViewById(R.id.TextInputLayoutPersonLastName);
         final String firstName = textInputEditTextFirstName.getText().toString();
         final String lastName = textInputEditTextLastName.getText().toString();
         Person person = new Person(firstName, lastName, "FOO", new Date(0));
 
-        //ModelView
-        PersonViewModel personViewModel = this.injection.provideViewModelFactory(getApplicationContext()).create(PersonViewModel.class);
-        personViewModel.insert(person);
-
-        //TODO : Form Validation
+        //TODO : Form Validation and
 
         resumeActivityListPersons();
     }

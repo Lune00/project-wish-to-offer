@@ -1,14 +1,15 @@
-package com.schuhmacher.room.room.repository;
+package com.schuhmacher.dal.repository;
+
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
 
-import com.schuhmacher.dal.repository.IPersonRepository;
 import com.schuhmacher.models.Person;
-import com.schuhmacher.room.room.AppRoomDataBase;
-import com.schuhmacher.room.room.dao.PersonDao;
-import com.schuhmacher.room.room.entities.PersonEntity;
-import com.schuhmacher.room.room.mappers.MapperPersonModelEntity;
+import com.schuhmacher.dal.room.AppRoomDataBase;
+import com.schuhmacher.dal.room.dao.PersonDao;
+import com.schuhmacher.dal.room.entities.PersonEntity;
+import com.schuhmacher.dal.mappers.MapperPersonModelEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,6 @@ public class PersonRepository implements IPersonRepository {
         return persons;
     }
 
-    //See Transformation of LiveData and link : https://proandroiddev.com/clean-easy-new-how-to-architect-your-app-part-4-livedata-transformations-f0fd9f313ec6
     //Return LiveData map to Person(model) for Presenter/UI only
     public LiveData<List<Person>> getAllLiveData() {
         LiveData<List<Person>> personModelsLD = Transformations.map(personDao.getAll(), newData -> createPersonModel(newData));
@@ -51,7 +51,7 @@ public class PersonRepository implements IPersonRepository {
      * Helper function :
      *
      * @param entities
-     * @return
+     * @return Person models
      */
     List<Person> createPersonModel(List<PersonEntity> entities) {
         List<Person> persons = new ArrayList<>();

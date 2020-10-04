@@ -1,4 +1,4 @@
-package com.schuhmacher.room.room;
+package com.schuhmacher.dal.room;
 
 
 import android.content.Context;
@@ -10,8 +10,8 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.schuhmacher.room.room.dao.PersonDao;
-import com.schuhmacher.room.room.entities.PersonEntity;
+import com.schuhmacher.dal.room.dao.PersonDao;
+import com.schuhmacher.dal.room.entities.PersonEntity;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

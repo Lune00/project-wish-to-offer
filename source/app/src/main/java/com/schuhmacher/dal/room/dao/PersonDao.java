@@ -1,10 +1,10 @@
-package com.schuhmacher.room.room.dao;
+package com.schuhmacher.dal.room.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Query;
 
-import com.schuhmacher.room.room.entities.PersonEntity;
+import com.schuhmacher.dal.room.entities.PersonEntity;
 
 import java.util.List;
 

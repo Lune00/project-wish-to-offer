@@ -1,4 +1,4 @@
-package com.schuhmacher.room.room.dao;
+package com.schuhmacher.dal.room.dao;
 
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;

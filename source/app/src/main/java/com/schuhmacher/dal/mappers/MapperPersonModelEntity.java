@@ -1,6 +1,6 @@
-package com.schuhmacher.room.room.mappers;
+package com.schuhmacher.dal.mappers;
 
-import com.schuhmacher.room.room.entities.PersonEntity;
+import com.schuhmacher.dal.room.entities.PersonEntity;
 import com.schuhmacher.models.Person;
 
 import java.util.Date;
