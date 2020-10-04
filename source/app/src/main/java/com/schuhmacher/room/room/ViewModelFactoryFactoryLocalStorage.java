@@ -1,19 +1,17 @@
 package com.schuhmacher.room.room;
 
 import android.content.Context;
-import com.schuhmacher.injection.IInjection;
-import com.schuhmacher.injection.ViewModelFactory;
+import com.schuhmacher.injection.IViewModelFactoryFactory;
+import com.schuhmacher.viewmodels.ViewModelFactory;
 import com.schuhmacher.room.room.repository.PersonRepository;
 
-//Implementation of the injection interface for Room persistence
-//Inject the repository into the ViewModel corresponding to the persistence mode choosen (see Configuration class)
-public class InjectionRoom implements IInjection {
 
-    
+//Inject the repository into the ViewModel corresponding to the persistence mode choosen (see Configuration class)
+public class ViewModelFactoryFactoryLocalStorage implements IViewModelFactoryFactory {
 
     //Returns ViewModels with Repository Implementation specific to Room persistance
     public ViewModelFactory provideViewModelFactory(Context context) {
-        PersonRepository personRepository = new InjectionRoom().providePersonRepository(context);
+        PersonRepository personRepository = providePersonRepository(context);
         return new ViewModelFactory(personRepository);
     }
 

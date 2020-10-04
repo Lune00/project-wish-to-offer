@@ -1,12 +1,12 @@
-package com.schuhmacher.injection;
+package com.schuhmacher.viewmodels;
 
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+
 import com.schuhmacher.dal.repository.IPersonRepository;
-import com.schuhmacher.viewmodels.PersonViewModel;
 
 
 public class ViewModelFactory implements ViewModelProvider.Factory {

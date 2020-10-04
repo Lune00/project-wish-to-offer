@@ -1,8 +1,6 @@
 package com.schuhmacher.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -12,17 +10,16 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.schuhmacher.Configuration;
-import com.schuhmacher.injection.IInjection;
+import com.schuhmacher.injection.IViewModelFactoryFactory;
 import com.schuhmacher.injection.InjectionFactory;
 import com.schuhmacher.models.Person;
-import com.schuhmacher.room.room.entities.PersonEntity;
 import com.schuhmacher.viewmodels.PersonViewModel;
 
 import java.util.Date;
 
 public class AddPersonActivity extends AppCompatActivity {
 
-    private final IInjection injection = InjectionFactory.getInjector(Configuration.getModePersistance());
+    private final IViewModelFactoryFactory injection = InjectionFactory.getInjector(Configuration.getModePersistance());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

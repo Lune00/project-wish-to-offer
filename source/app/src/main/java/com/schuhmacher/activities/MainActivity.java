@@ -9,7 +9,6 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,17 +16,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.schuhmacher.Configuration;
 import com.schuhmacher.activities.adapters.ListPersonsAdapter;
-import com.schuhmacher.injection.IInjection;
+import com.schuhmacher.injection.IViewModelFactoryFactory;
 import com.schuhmacher.injection.InjectionFactory;
-import com.schuhmacher.models.Person;
 import com.schuhmacher.viewmodels.PersonViewModel;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private final IInjection injection = InjectionFactory.getInjector(Configuration.getModePersistance());
+    private final IViewModelFactoryFactory injection = InjectionFactory.getInjector(Configuration.getModePersistance());
     private Toolbar toolbar;
     private FloatingActionButton fabAddPerson;
     private ListPersonsAdapter adapter;
